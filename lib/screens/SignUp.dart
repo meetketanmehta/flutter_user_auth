@@ -142,6 +142,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         body: isProcessing
             ? Center(
                 child: CircularProgressIndicator(),
@@ -149,7 +150,7 @@ class _SignUpState extends State<SignUp> {
             : SingleChildScrollView(
                 child: Form(
                 key: _formKey,
-                onChanged: (){
+                onChanged: () {
                   setState(() {
                     signUpMessage = Strings.EMPTY_STRING;
                   });

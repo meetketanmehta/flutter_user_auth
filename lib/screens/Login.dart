@@ -205,6 +205,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: _isProcessing
           ? Center(
               child: CircularProgressIndicator(),
@@ -212,7 +213,7 @@ class _LoginState extends State<Login> {
           : SingleChildScrollView(
               child: Form(
                 key: _formKey,
-                onChanged: (){
+                onChanged: () {
                   setState(() {
                     loginMessage = Strings.EMPTY_STRING;
                   });
