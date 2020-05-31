@@ -10,7 +10,7 @@ class UserAuth {
   static AuthConfig authConfig;
   static bool isLogged = false;
 
-  static void initialize (AuthConfig authConfig) async{
+  static Future<void> initialize (AuthConfig authConfig) async{
     UserAuth.authConfig = authConfig;
     String authToken = await getAuthToken();
     if(authToken == null)
