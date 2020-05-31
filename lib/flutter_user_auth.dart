@@ -19,15 +19,15 @@ class UserAuth {
       isLogged = true;
   }
 
-  static void login(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+  static Future<void> login(BuildContext context) async {
+    return Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
   }
 
-  static void signUp(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+  static Future<void> signUp(BuildContext context) {
+    return Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
   }
 
-  static void logout() async{
+  static Future<void> logout() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove(Strings.AUTH_TOKEN);
     isLogged = false;
