@@ -141,72 +141,77 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        body: isProcessing
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : SingleChildScrollView(
-                child: Form(
-                key: _formKey,
-                onChanged: () {
-                  setState(() {
-                    signUpMessage = Strings.EMPTY_STRING;
-                  });
-                },
-                child: Container(
-                  height: MediaQuery.of(context).size.height,
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              flex: 3,
-                              child: SizedBox(),
-                            ),
-                            Logo(),
-                            SizedBox(
-                              height: 50,
-                            ),
-                            _emailPasswordWidget(),
-                            SizedBox(
-                              height: 50,
-                              child: signUpMessage.isNotEmpty
-                                  ? Center(
-                                      child: Text(
-                                        signUpMessage,
-                                        style: TextStyle(
-                                          color: Colors.red,
-                                          fontSize: 15,
+    return Theme(
+      data: ThemeData(
+        primaryColor: Colors.blue,
+      ),
+      child: Scaffold(
+          backgroundColor: Colors.white,
+          body: isProcessing
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : SingleChildScrollView(
+                  child: Form(
+                  key: _formKey,
+                  onChanged: () {
+                    setState(() {
+                      signUpMessage = Strings.EMPTY_STRING;
+                    });
+                  },
+                  child: Container(
+                    height: MediaQuery.of(context).size.height,
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Expanded(
+                                flex: 3,
+                                child: SizedBox(),
+                              ),
+                              Logo(),
+                              SizedBox(
+                                height: 50,
+                              ),
+                              _emailPasswordWidget(),
+                              SizedBox(
+                                height: 50,
+                                child: signUpMessage.isNotEmpty
+                                    ? Center(
+                                        child: Text(
+                                          signUpMessage,
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 15,
+                                          ),
                                         ),
-                                      ),
-                                    )
-                                  : null,
-                            ),
-                            SubmitButtonWidget(
-                              onTap: _registerWithEmail,
-                              title: 'Register Now',
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: SizedBox(),
-                            )
-                          ],
+                                      )
+                                    : null,
+                              ),
+                              SubmitButtonWidget(
+                                onTap: _registerWithEmail,
+                                title: 'Register Now',
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: SizedBox(),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: _loginAccountLabel(),
-                      ),
-                      Positioned(top: 40, left: 0, child: BackButtonWidget()),
-                    ],
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: _loginAccountLabel(),
+                        ),
+                        Positioned(top: 40, left: 0, child: BackButtonWidget()),
+                      ],
+                    ),
                   ),
-                ),
-              )));
+                ))),
+    );
   }
 }

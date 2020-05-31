@@ -204,82 +204,87 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: _isProcessing
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : SingleChildScrollView(
-              child: Form(
-                key: _formKey,
-                onChanged: () {
-                  setState(() {
-                    loginMessage = Strings.EMPTY_STRING;
-                  });
-                },
-                child: Container(
-                  height: MediaQuery.of(context).size.height,
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              flex: 3,
-                              child: SizedBox(),
-                            ),
-                            Logo(),
-                            SizedBox(
-                              height: 50,
-                            ),
-                            _emailPasswordWidget(),
-                            SizedBox(
-                              height: 50,
-                              child: loginMessage.isNotEmpty
-                                  ? Center(
-                                      child: Text(
-                                        loginMessage,
-                                        style: TextStyle(
-                                            color: Colors.red, fontSize: 15),
-                                      ),
-                                    )
-                                  : null,
-                            ),
-                            SubmitButtonWidget(
-                              onTap: _loginWithEmail,
-                              title: 'Login',
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(vertical: 10),
-                              alignment: Alignment.centerRight,
-                              child: Text('Forgot Password ?',
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500)),
-                            ),
-                            _divider(),
-                            _facebookButton(),
-                            Expanded(
-                              flex: 2,
-                              child: SizedBox(),
-                            ),
-                          ],
+    return Theme(
+      data: ThemeData(
+        primaryColor: Colors.blue,
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: _isProcessing
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : SingleChildScrollView(
+                child: Form(
+                  key: _formKey,
+                  onChanged: () {
+                    setState(() {
+                      loginMessage = Strings.EMPTY_STRING;
+                    });
+                  },
+                  child: Container(
+                    height: MediaQuery.of(context).size.height,
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Expanded(
+                                flex: 3,
+                                child: SizedBox(),
+                              ),
+                              Logo(),
+                              SizedBox(
+                                height: 50,
+                              ),
+                              _emailPasswordWidget(),
+                              SizedBox(
+                                height: 50,
+                                child: loginMessage.isNotEmpty
+                                    ? Center(
+                                        child: Text(
+                                          loginMessage,
+                                          style: TextStyle(
+                                              color: Colors.red, fontSize: 15),
+                                        ),
+                                      )
+                                    : null,
+                              ),
+                              SubmitButtonWidget(
+                                onTap: _loginWithEmail,
+                                title: 'Login',
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                alignment: Alignment.centerRight,
+                                child: Text('Forgot Password ?',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500)),
+                              ),
+                              _divider(),
+                              _facebookButton(),
+                              Expanded(
+                                flex: 2,
+                                child: SizedBox(),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: _createAccountLabel(),
-                      ),
-                      Positioned(top: 40, left: 0, child: BackButtonWidget()),
-                    ],
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: _createAccountLabel(),
+                        ),
+                        Positioned(top: 40, left: 0, child: BackButtonWidget()),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
+      ),
     );
   }
 }
