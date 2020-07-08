@@ -19,7 +19,7 @@ class UserAuth {
       isLogged = true;
   }
 
-  static Future<void> login(BuildContext context) async {
+  static Future<void> login(BuildContext context, {bool showSignUpButton = true}) async {
     return Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
   }
 

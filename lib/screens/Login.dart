@@ -12,6 +12,9 @@ import 'package:flutter_user_auth/screens/SignUp.dart';
 import 'package:flutter_user_auth/res/values/Strings.dart';
 
 class Login extends StatefulWidget {
+  final bool showSignUpButton;
+  Login({this.showSignUpButton});
+
   @override
   _LoginState createState() => _LoginState();
 }
@@ -276,7 +279,7 @@ class _LoginState extends State<Login> {
                         ),
                         Align(
                           alignment: Alignment.bottomCenter,
-                          child: _createAccountLabel(),
+                          child: (widget.showSignUpButton) ? _createAccountLabel() : null ,
                         ),
                         Positioned(top: 40, left: 0, child: BackButtonWidget()),
                       ],
