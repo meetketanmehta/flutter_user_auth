@@ -11,9 +11,18 @@ import 'package:flutter_user_auth/widgets/SubmitButton.dart';
 import 'package:flutter_user_auth/screens/SignUp.dart';
 import 'package:flutter_user_auth/res/values/Strings.dart';
 
+typedef void RunWhenLogged();
+
 class Login extends StatefulWidget {
   final bool showSignUpButton;
-  Login({this.showSignUpButton});
+  final RunWhenLogged whenLoggedFunction;
+  final bool showBackButton;
+  final bool popScreenAfterLogin;
+  Login(
+      {this.showSignUpButton = true,
+      this.whenLoggedFunction,
+      this.showBackButton = true,
+      this.popScreenAfterLogin = true});
 
   @override
   _LoginState createState() => _LoginState();
@@ -52,7 +61,12 @@ class _LoginState extends State<Login> {
     if (response.statusCode == 200) {
       await UserAuth.saveAuthToken(responseBody[Strings.AUTH_TOKEN]);
       Toast.show(Strings.LOGGED_IN_MESSAGE, context);
-      Navigator.pop(context);
+      if (widget.popScreenAfterLogin) {
+        Navigator.pop(context);
+      }
+      if (widget.whenLoggedFunction != null) {
+        widget.whenLoggedFunction();
+      }
       return;
     }
     final String message = responseBody[Strings.MESSAGE];
@@ -279,9 +293,13 @@ class _LoginState extends State<Login> {
                         ),
                         Align(
                           alignment: Alignment.bottomCenter,
-                          child: (widget.showSignUpButton) ? _createAccountLabel() : null ,
+                          child: (widget.showSignUpButton)
+                              ? _createAccountLabel()
+                              : null,
                         ),
-                        Positioned(top: 40, left: 0, child: BackButtonWidget()),
+                        if (widget.showBackButton)
+                          Positioned(
+                              top: 40, left: 0, child: BackButtonWidget()),
                       ],
                     ),
                   ),
